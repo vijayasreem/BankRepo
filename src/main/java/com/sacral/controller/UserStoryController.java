@@ -1,54 +1,60 @@
 package com.sacral.controller;
 
-import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sacral.service.UserStoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-@RequestMapping("/userStory")
 public class UserStoryController {
-	
-	@Autowired
-	private UserStoryService userStoryService;
-	
-	@PostMapping("/acceptDocuments")
-	public void acceptDocuments(@RequestParam("fileFormat") String fileFormat) throws IOException {
-		userStoryService.acceptDocuments(fileFormat);
-	}
-	
-	@PostMapping("/evaluateCreditScore")
-	public boolean evaluateCreditScore(@RequestParam("creditScore") int creditScore) throws Exception {
-		return userStoryService.evaluateCreditScore(creditScore);
-	}
-	
-	@PostMapping("/checkAge")
-	public boolean checkAge(@RequestParam("age") int age) throws Exception {
-		return userStoryService.checkAge(age);
-	}
-	
-	@PostMapping("/defineUserRoles")
-	public void defineUserRoles() throws Exception {
-		userStoryService.defineUserRoles();
-	}
-	
-	@PostMapping("/addEditDeleteRecipientProfiles")
-	public void addEditDeleteRecipientProfiles(@RequestParam("name") String name, 
-												@RequestParam("email") String email, 
-												@RequestParam("bankAccount") String bankAccount) throws Exception {
-		userStoryService.addEditDeleteRecipientProfiles(name, email, bankAccount);
-	}
-	
-	@PostMapping("/disburseApprovedLoanAmount")
-	public void disburseApprovedLoanAmount(@RequestParam("recipient") String recipient) throws Exception {
-		userStoryService.disburseApprovedLoanAmount(recipient);
-	}
-	
-	
+
+    @Autowired
+    private UserStoryService userStoryService;
+
+    @PostMapping("/verifyDocumentFormat")
+    public void verifyDocumentFormat(@RequestBody String format) throws Exception {
+        userStoryService.verifyDocumentFormat(format);
+    }
+
+    @PostMapping("/evaluateCreditWorthiness")
+    public void evaluateCreditWorthiness(@RequestBody String income, String employmentStatus) {
+        userStoryService.evaluateCreditWorthiness(income, employmentStatus);
+    }
+
+    @PostMapping("/checkCustomerAge")
+    public void checkCustomerAge(@RequestBody int age) {
+        userStoryService.checkCustomerAge(age);
+    }
+
+    @PostMapping("/checkCreditScore")
+    public void checkCreditScore(@RequestBody int score) {
+        userStoryService.checkCreditScore(score);
+    }
+
+    @PostMapping("/defineDisbursementLogic")
+    public void defineDisbursementLogic(@RequestBody int amount) {
+        userStoryService.defineDisbursementLogic(amount);
+    }
+
+    @PostMapping("/defineUserRolesAndPermissions")
+    public void defineUserRolesAndPermissions() {
+        userStoryService.defineUserRolesAndPermissions();
+    }
+
+    @PostMapping("/addRecipientProfile")
+    public void addRecipientProfile(@RequestBody String name, String email, String bankAccountDetails) {
+        userStoryService.addRecipientProfile(name, email, bankAccountDetails);
+    }
+
+    @PostMapping("/editRecipientProfile")
+    public void editRecipientProfile(@RequestBody String name, String email, String bankAccountDetails) {
+        userStoryService.editRecipientProfile(name, email, bankAccountDetails);
+    }
+
+    @PostMapping("/deleteRecipientProfile")
+    public void deleteRecipientProfile(@RequestBody String name, String email, String bankAccountDetails) {
+        userStoryService.deleteRecipientProfile(name, email, bankAccountDetails);
+    }
 
 }

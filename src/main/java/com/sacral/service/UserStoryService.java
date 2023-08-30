@@ -1,49 +1,55 @@
 package com.sacral.service;
 
-import java.io.IOException;
-
+import org.springframework.stereotype.Service;
 import com.sacral.repository.UserStoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
+@Service
 public class UserStoryService {
 
-	private UserStoryRepository userStoryRepository;
+    @Autowired
+    private UserStoryRepository userStoryRepository;
 
-	public UserStoryService(UserStoryRepository userStoryRepository) {
-		this.userStoryRepository = userStoryRepository;
-	}
+    public void verifyDocumentFormat(String format) throws Exception {
+        userStoryRepository.verifyDocumentFormat(format);
+    }
 
-	public void acceptDocuments(String fileFormat) throws IOException {
-		userStoryRepository.acceptDocuments(fileFormat);
-	}
+    public void evaluateCreditWorthiness(String income, String employmentStatus) {
+        userStoryRepository.evaluateCreditWorthiness(income, employmentStatus);
+    }
 
-	public boolean evaluateCreditScore(int creditScore) throws Exception {
-		if (creditScore < 600) {
-			return false;
-		} else if (creditScore >= 700) {
-			return true;
-		} else {
-			return userStoryRepository.evaluateCreditScore(creditScore);
-		}
-	}
+    public void checkCustomerAge(int age) {
+        if (age < 18 || age > 65) {
+            throw new IllegalArgumentException("Age must be between 18 and 65");
+        }
+        userStoryRepository.checkCustomerAge(age);
+    }
 
-	public boolean checkAge(int age) throws Exception {
-		if (age < 18 || age > 65) {
-			return false;
-		} else {
-			return userStoryRepository.checkAge(age);
-		}
-	}
+    public void checkCreditScore(int score) {
+        if (score < 600) {
+            throw new IllegalArgumentException("Credit score must be greater than 600");
+        }
+        userStoryRepository.checkCreditScore(score);
+    }
 
-	public void defineUserRoles() throws Exception {
-		userStoryRepository.defineUserRoles();
-	}
+    public void defineDisbursementLogic(int amount) {
+        userStoryRepository.defineDisbursementLogic(amount);
+    }
 
-	public void addEditDeleteRecipientProfiles(String name, String email, String bankAccount) throws Exception {
-		userStoryRepository.addEditDeleteRecipientProfiles(name, email, bankAccount);
-	}
+    public void defineUserRolesAndPermissions() {
+        userStoryRepository.defineUserRolesAndPermissions();
+    }
 
-	public void disburseApprovedLoanAmount(String recipient) throws Exception {
-		userStoryRepository.disburseApprovedLoanAmount(recipient);
-	}
+    public void addRecipientProfile(String name, String email, String bankAccountDetails) {
+        userStoryRepository.addRecipientProfile(name, email, bankAccountDetails);
+    }
+
+    public void editRecipientProfile(String name, String email, String bankAccountDetails) {
+        userStoryRepository.editRecipientProfile(name, email, bankAccountDetails);
+    }
+
+    public void deleteRecipientProfile(String name, String email, String bankAccountDetails) {
+        userStoryRepository.deleteRecipientProfile(name, email, bankAccountDetails);
+    }
 
 }

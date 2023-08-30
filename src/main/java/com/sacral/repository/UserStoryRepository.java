@@ -1,12 +1,21 @@
 @Repository
-package com.sacral.repository;
-import java.io.IOException;
-
 public interface UserStoryRepository {
-    void acceptDocuments(String fileFormat) throws IOException;
-    boolean evaluateCreditScore(int creditScore) throws Exception;
-    boolean checkAge(int age) throws Exception;
-    void defineUserRoles() throws Exception;
-    void addEditDeleteRecipientProfiles(String name, String email, String bankAccount) throws Exception;
-    void disburseApprovedLoanAmount(String recipient) throws Exception;
+
+    void verifyDocumentFormat(String format) throws Exception;
+
+    void evaluateCreditWorthiness(String income, String employmentStatus);
+
+    void checkCustomerAge(int age);
+
+    void checkCreditScore(int score);
+
+    void defineDisbursementLogic(int amount);
+
+    void defineUserRolesAndPermissions();
+
+    void addRecipientProfile(String name, String email, String bankAccountDetails);
+
+    void editRecipientProfile(String name, String email, String bankAccountDetails);
+
+    void deleteRecipientProfile(String name, String email, String bankAccountDetails);
 }
