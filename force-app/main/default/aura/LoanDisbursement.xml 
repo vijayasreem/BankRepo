@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AuraDefinition>
+  <component>
+    <meta>
+      <description>A component to disburse a loan amount to either the car dealer or the borrower.</description>
+    </meta>
+    <controller>
+      <methods>
+        <method name="reviewApplicantDocumentsAndCreditworthiness">
+          <parameter name="applicantDocuments" type="Object" />
+          <parameter name="creditworthiness" type="Boolean"/>
+        </method>
+        <method name="preQualifyApplicantForLoanAmountAndInterestRateRange">
+          <parameter name="loanAmount" type="Number" />
+          <parameter name="interestRateRange" type="Number" />
+        </method>
+        <method name="approveLoanWithSpecificTermsAndConditions">
+          <parameter name="loanTermsAndConditions" type="Object" />
+        </method>
+        <method name="assessVehicleValue">
+          <parameter name="vehicleValue" type="Number" />
+          <parameter name="loanAmountRequested" type="Number" />
+        </method>
+        <method name="disburseApprovedLoanAmount">
+          <parameter name="approvedLoanAmount" type="Number" />
+          <parameter name="carDealer" type="Boolean" />
+          <parameter name="borrower" type="Boolean" />
+        </method>
+        <method name="retainTitleAsCollateralUntilLoanRepaid">
+          <parameter name="title" type="String" />
+        </method>
+        <method name="provideOnlineAccountPortalOrMobileAppForBorrowers">
+          <parameter name="accountPortal" type="Object" />
+          <parameter name="mobileApp" type="Object" />
+        </method>
+        <method name="manageLatePaymentsAndDefaults">
+          <parameter name="latePayments" type="Object" />
+          <parameter name="defaults" type="Object" />
+        </method>
+        <method name="provideCustomerSupport">
+          <parameter name="inquiries" type="Object" />
+          <parameter name="issues" type="Object" />
+        </method>
+        <method name="releaseTitleToBorrowerOnceLoanFullyRepaid">
+          <parameter name="title" type="String" />
+        </method>
+      </methods>
+    </controller>
+  </component>
+</AuraDefinition>

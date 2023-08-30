@@ -1,0 +1,115 @@
+/* Bank Disbursement Component */
+
+.bank-disbursement {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.bank-disbursement__document-review {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__qualification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__approval {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__vehicle-assessment {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__disbursement-amount {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__title-collateral {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__account-portal {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__late-payments {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__customer-support {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bank-disbursement__title-transfer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}

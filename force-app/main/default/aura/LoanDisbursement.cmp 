@@ -1,0 +1,44 @@
+<aura:component>
+    <aura:attribute name="applicantDocuments" type="boolean" required="true" />
+    <aura:attribute name="creditworthiness" type="boolean" required="true" />
+    <aura:attribute name="loanAmount" type="number" required="true" />
+    <aura:attribute name="interestRate" type="number" required="true" />
+    <aura:attribute name="termsConditions" type="string" required="true" />
+    <aura:attribute name="vehicleValue" type="number" required="true" />
+    <aura:attribute name="disbursementType" type="string" required="true" />
+    <aura:attribute name="titleRetention" type="boolean" required="true" />
+    <aura:attribute name="accountPortal" type="boolean" required="true" />
+    <aura:attribute name="latePayments" type="boolean" required="true" />
+    <aura:attribute name="defaults" type="boolean" required="true" />
+    <aura:attribute name="customerSupport" type="boolean" required="true" />
+    <aura:attribute name="titleRelease" type="boolean" required="true" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:if isTrue="{!v.applicantDocuments && v.creditworthiness}">
+        <aura:set attribute="else">
+            <div>Applicant documents and creditworthiness must be approved.</div>
+        </aura:set>
+        <aura:if isTrue="{!v.loanAmount && v.interestRate && v.termsConditions}">
+            <aura:set attribute="else">
+                <div>Loan amount, interest rate, and terms and conditions must be set.</div>
+            </aura:set>
+            <aura:if isTrue="{!v.vehicleValue}">
+                <aura:set attribute="else">
+                    <div>Vehicle value must be assessed.</div>
+                </aura:set>
+                <aura:if isTrue="{!v.disbursementType}">
+                    <aura:set attribute="else">
+                        <div>The type of disbursement must be selected.</div>
+                    </aura:set>
+                    <aura:if isTrue="{!v.titleRetention && v.accountPortal && v.latePayments && v.defaults && v.customerSupport && v.titleRelease}">
+                        <aura:set attribute="else">
+                            <div>The title must be retained, an account portal must be provided, late payments and defaults must be managed, customer support must be provided, and the title must be released upon full repayment.</div>
+                        </aura:set>
+                        <div>The loan has been approved and disbursed.</div>
+                    </aura:if>
+                </aura:if>
+            </aura:if>
+        </aura:if>
+    </aura:if>
+</aura:component>
