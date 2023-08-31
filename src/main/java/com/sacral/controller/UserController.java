@@ -1,61 +1,45 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+package com.sacral.controller;
 
-import com.sacral.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.sacral.service.UserService;
 
-@Controller
-@RequestMapping("/user")
+@RestController
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@RequestMapping(value = "/verifyFileFormat", method = RequestMethod.POST)
-	@ResponseBody
-	public void verifyFileFormat(@RequestParam String fileFormat) {
-		userService.verifyFileFormat(fileFormat);
-	}
+    @GetMapping("/greetUser")
+    public void greetUser() {
+        userService.greetUser();
+    }
 
-	@RequestMapping(value = "/evaluateCreditworthiness", method = RequestMethod.POST)
-	@ResponseBody
-	public void evaluateCreditworthiness(@RequestParam int income, @RequestParam String employmentStatus) {
-		userService.evaluateCreditworthiness(income, employmentStatus);
-	}
+    @GetMapping("/verifyIdentityAndAddress")
+    public boolean verifyIdentityAndAddress(@RequestParam String identity, @RequestParam String address) {
+        return userService.verifyIdentityAndAddress(identity, address);
+    }
 
-	@RequestMapping(value = "/checkAge", method = RequestMethod.POST)
-	@ResponseBody
-	public void checkAge(@RequestParam int age) {
-		userService.checkAge(age);
-	}
+    @GetMapping("/evaluateCreditScore")
+    public boolean evaluateCreditScore(@RequestParam double annualIncome, @RequestParam int creditScore) {
+        return userService.evaluateCreditScore(annualIncome, creditScore);
+    }
 
-	@RequestMapping(value = "/checkCreditScore", method = RequestMethod.POST)
-	@ResponseBody
-	public void checkCreditScore(@RequestParam int creditScore) {
-		userService.checkCreditScore(creditScore);
-	}
+    @GetMapping("/autoApprovePayment")
+    public boolean autoApprovePayment(@RequestParam double paymentAmount) {
+        return userService.autoApprovePayment(paymentAmount);
+    }
 
-	@RequestMapping(value = "/defineDisbursementLogic", method = RequestMethod.POST)
-	@ResponseBody
-	public void defineDisbursementLogic(@RequestParam int loanAmount) {
-		userService.defineDisbursementLogic(loanAmount);
-	}
+    @GetMapping("/disbursement")
+    public void disbursement(@RequestParam String vendorName, @RequestParam boolean fundsAvailable, @RequestParam boolean paymentApproval) {
+        userService.disbursement(vendorName, fundsAvailable, paymentApproval);
+    }
 
-	@RequestMapping(value = "/defineUserRolesAndPermissions", method = RequestMethod.POST)
-	@ResponseBody
-	public void defineUserRolesAndPermissions(@RequestParam String role, @RequestParam String permission) {
-		userService.defineUserRolesAndPermissions(role, permission);
-	}
-
-	@RequestMapping(value = "/addEditDeleteRecipientProfiles", method = RequestMethod.POST)
-	@ResponseBody
-	public void addEditDeleteRecipientProfiles(@RequestParam String name, @RequestParam String email, 
-			@RequestParam String bankAccountDetails) {
-		userService.addEditDeleteRecipientProfiles(name, email, bankAccountDetails);
-	}
-	
+    @GetMapping("/closeApp")
+    public void closeApp() {
+        userService.closeApp();
+    }
 }
