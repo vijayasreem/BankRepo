@@ -1,61 +1,56 @@
 package com.sacral.controller;
 
-import com.sacral.repository.UserStoryRepository;
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sacral.model.UserStoryInput;
+import com.sacral.repository.UserStoryRepository;
+import com.sacral.service.UserStoryService;
+
 @RestController
-@RequestMapping("/userstory")
 public class UserStoryController {
+
+    @Autowired
+    private UserStoryService userStoryService;
 
     @Autowired
     private UserStoryRepository userStoryRepository;
 
-    @RequestMapping(value = "/verifyDocumentFormat", method = RequestMethod.GET)
-    public boolean verifyDocumentFormat(String doc) {
-        return userStoryRepository.verifyDocumentFormat(doc);
-    }
-
-    @RequestMapping(value = "/evaluateCreditworthiness", method = RequestMethod.GET)
-    public boolean evaluateCreditworthiness(int salary, String employmentStatus) {
-        return userStoryRepository.evaluateCreditworthiness(salary, employmentStatus);
-    }
-
-    @RequestMapping(value = "/checkCustomerAge", method = RequestMethod.GET)
-    public boolean checkCustomerAge(int age) {
-        return userStoryRepository.checkCustomerAge(age);
-    }
-
-    @RequestMapping(value = "/checkCreditScore", method = RequestMethod.GET)
-    public boolean checkCreditScore(int creditScore) {
-        return userStoryRepository.checkCreditScore(creditScore);
-    }
-
-    @RequestMapping(value = "/disbursementLogic", method = RequestMethod.GET)
-    public void disbursementLogic(int approvedLoanAmount) {
-        userStoryRepository.disbursementLogic(approvedLoanAmount);
-    }
-
-    @RequestMapping(value = "/defineUserRoles", method = RequestMethod.GET)
-    public void defineUserRoles(String userRole) {
-        userStoryRepository.defineUserRoles(userRole);
-    }
-
-    @RequestMapping(value = "/addRecipientProfile", method = RequestMethod.GET)
-    public void addRecipientProfile(String name, String email, String bankAccountDetails) {
-        userStoryRepository.addRecipientProfile(name, email, bankAccountDetails);
-    }
-
-    @RequestMapping(value = "/editRecipientProfile", method = RequestMethod.GET)
-    public void editRecipientProfile(String name, String email, String bankAccountDetails) {
-        userStoryRepository.editRecipientProfile(name, email, bankAccountDetails);
-    }
-
-    @RequestMapping(value = "/deleteRecipientProfile", method = RequestMethod.GET)
-    public void deleteRecipientProfile(String name) {
-        userStoryRepository.deleteRecipientProfile(name);
+    @PostMapping("/userStory")
+    public String userStory(@RequestBody UserStoryInput userStoryInput) {
+        Scanner sc = new Scanner(System.in);
+        userStoryService.greetUser();
+        String identityVerification = userStoryService.verifyIdentityAndAddress(userStoryInput.getIdentity(), userStoryInput.getAddress());
+        System.out.println(identityVerification);
+        String creditEligibility = userStoryService.verifyCreditEligibility(userStoryInput.getIncome(), userStoryInput.getCreditScore());
+        System.out.println(creditEligibility);
+        if (creditEligibility.equals("Congratulations! You are eligible for a high-limit credit card.")) {
+            boolean vehicleAssessment = userStoryService.verifyVehicleAssessment(userStoryInput.getDisbursedAmount(), userStoryInput.getVehicleAssessmentValue());
+            if (vehicleAssessment) {
+                userStoryService.disburseAmount(userStoryInput.getDisbursedAmount(), userStoryInput.getRecipient());
+            } else {
+                System.out.println("The loan amount cannot exceed the vehicle value.");
+            }
+        } else if (creditEligibility.equals("Congratulations! You are eligible for a moderate-limit credit card.")) {
+            boolean vendorInfo = userStoryService.verifyVendorInfo(userStoryInput.getVendorName());
+            if (vendorInfo) {
+                boolean fundsAvailability = userStoryService.verifyFundsAvailability(userStoryInput.getPaymentAmount());
+                if (fundsAvailability) {
+                    userStoryService.approvePayment(userStoryInput.getPaymentAmount());
+                    System.out.println("The payment of $" + userStoryInput.getPaymentAmount() + " has been approved to " + userStoryInput.getVendorName() + ".");
+                } else {
+                    System.out.println("Insufficient funds for disbursement.");
+                }
+            } else {
+                System.out.println("The vendor information is invalid.");
+            }
+        }
+        userStoryService.closeScanner(sc);
+        return "Application closed";
     }
 
 }
