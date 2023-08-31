@@ -1,51 +1,95 @@
 package com.sacral.service;
 
+import com.sacral.repository.UserStoryRepository;
 import java.util.Scanner;
 
-import com.sacral.repository.UserStoryRepository;
-
+@Repository
 public class UserStoryService {
 
-    private UserStoryRepository userStoryRepository;
+    private UserStoryRepository repository;
 
-    public UserStoryService(UserStoryRepository userStoryRepository) {
-        this.userStoryRepository = userStoryRepository;
+    public UserStoryService(UserStoryRepository repository){
+        this.repository = repository;
     }
 
-    public void greetUser() {
-        userStoryRepository.greetUser();
+    public void runUserStory(){
+        repository.greetUser();
+
+        Scanner scanner = repository.importScanner();
+        System.out.println("Please enter your name:");
+        String name = scanner.nextLine();
+
+        System.out.println("Please enter your address:");
+        String address = scanner.nextLine();
+
+        boolean identityVerified = repository.verifyIdentity(name);
+        boolean addressVerified = repository.verifyAddress(address);
+
+        if(identityVerified && addressVerified){
+            repository.successMessage();
+        } else if(identityVerified && !addressVerified){
+            repository.addressVerificationPendingMessage();
+        } else if(!identityVerified && addressVerified){
+            repository.identityVerificationPendingMessage();
+        } else {
+            repository.documentVerificationIncompleteMessage();
+        }
+
+        System.out.println("Please enter your annual income:");
+        int annualIncome = scanner.nextInt();
+
+        System.out.println("Please enter your credit score:");
+        int creditScore = scanner.nextInt();
+
+        boolean creditScoreVerified = repository.verifyCreditScore(annualIncome, creditScore);
+
+        if(creditScoreVerified){
+            repository.congratsMessageHighLimit();
+        } else {
+            repository.congratsMessageModerateLimit();
+        }
+
+        repository.closeScanner(scanner);
+        repository.closeApplication();
     }
 
-    public String verifyIdentityAndAddress(String identity, String address) {
-        return userStoryRepository.verifyIdentityAndAddress(identity, address);
+    public void runPaymentVerification(){
+        Scanner scanner = repository.importScanner();
+        System.out.println("Please enter the payment amount:");
+        int paymentAmount = scanner.nextInt();
+
+        boolean paymentApproved = repository.verifyPaymentApproval(paymentAmount);
+        if(paymentApproved){
+            repository.approvePaymentMessage();
+            repository.verifyVendorMessage();
+            repository.confirmFundsMessage();
+            System.out.println("Please enter the vendor's name:");
+            String vendorName = scanner.nextLine();
+            repository.disbursementMessage(vendorName, paymentAmount);
+        } else {
+            repository.invalidVendorMessage();
+        }
+
+        repository.closeScanner(scanner);
     }
 
-    public String verifyCreditEligibility(double income, int creditScore) {
-        return userStoryRepository.verifyCreditEligibility(income, creditScore);
-    }
+    public void runAssessmentVerification(){
+        Scanner scanner = repository.importScanner();
+        System.out.println("Please enter the disbursed amount:");
+        int disbursedAmount = scanner.nextInt();
 
-    public void closeScanner(Scanner sc) {
-        userStoryRepository.closeScanner(sc);
-    }
+        System.out.println("Please enter the vehicle assessment value:");
+        int vehicleAssessmentValue = scanner.nextInt();
 
-    public boolean verifyVehicleAssessment(double disbursedAmount, double vehicleAssessmentValue) {
-        return userStoryRepository.verifyVehicleAssessment(disbursedAmount, vehicleAssessmentValue);
-    }
+        boolean assessmentVerified = repository.verifyAssessmentValue(disbursedAmount, vehicleAssessmentValue);
 
-    public void disburseAmount(double disbursedAmount, String recipient) {
-        userStoryRepository.disburseAmount(disbursedAmount, recipient);
-    }
+        if(assessmentVerified){
+            repository.assessmentPassedMessage(disbursedAmount);
+        } else {
+            repository.assessmentFailedMessage(disbursedAmount);
+        }
 
-    public boolean verifyVendorInfo(String vendorName) {
-        return userStoryRepository.verifyVendorInfo(vendorName);
-    }
-
-    public boolean verifyFundsAvailability(double paymentAmount) {
-        return userStoryRepository.verifyFundsAvailability(paymentAmount);
-    }
-
-    public void approvePayment(double paymentAmount) {
-        userStoryRepository.approvePayment(paymentAmount);
+        repository.closeScanner(scanner);
     }
 
 }
