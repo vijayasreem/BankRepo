@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sacral</groupId>
-	<artifactId>SAC-142</artifactId>
+	<artifactId>SAC-198</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Bank</name>
