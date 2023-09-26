@@ -1,27 +1,41 @@
-// Spring Boot Entity/Model Class
 
 package com.sacral.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String identity;
-    private String address;
-    private double annualIncome;
-    private int creditScore;
-    private double paymentAmount;
-    private String vendorName;
-    private boolean fundsAvailable;
-    private boolean paymentApproval;
+
+    @Column(name = "login_id")
+    private String loginId;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "mobile_number")
+    private String mobileNumber;
+
+    @Column(name = "password")
+    private String password;
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -31,76 +45,67 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
-    public String getIdentity() {
-        return identity;
+    public String getTitle() {
+        return title;
     }
 
-    public void setIdentity(String identity) {
-        this.identity = identity;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAddress() {
-        return address;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public double getAnnualIncome() {
-        return annualIncome;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAnnualIncome(double annualIncome) {
-        this.annualIncome = annualIncome;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public int getCreditScore() {
-        return creditScore;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCreditScore(int creditScore) {
-        this.creditScore = creditScore;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public double getPaymentAmount() {
-        return paymentAmount;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPaymentAmount(double paymentAmount) {
-        this.paymentAmount = paymentAmount;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public boolean isFundsAvailable() {
-        return fundsAvailable;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFundsAvailable(boolean fundsAvailable) {
-        this.fundsAvailable = fundsAvailable;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public boolean isPaymentApproval() {
-        return paymentApproval;
-    }
-
-    public void setPaymentApproval(boolean paymentApproval) {
-        this.paymentApproval = paymentApproval;
-    }
-
 }

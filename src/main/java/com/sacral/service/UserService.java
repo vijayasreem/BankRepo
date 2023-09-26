@@ -1,69 +1,65 @@
 package com.sacral.service;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.sacral.model.User;
 import com.sacral.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
+@Transactional
 public class UserService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
-
-    public void greetUser() {
-        System.out.println("Welcome to the Document Verification App!");
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public boolean verifyIdentityAndAddress(String identity, String address) {
-        User user = userRepository.findByIdentityAndAddress(identity, address);
-        if (user != null) {
-            System.out.println("Identity and Address verified! You are eligible for banking services.");
-            return true;
-        } else {
-            System.out.println("Document verification incomplete. You are not eligible for banking services.");
-            return false;
-        }
+    public List<User> getAllFunctionalities() {
+        return userRepository.getAllFunctionalities();
     }
 
-    public boolean evaluateCreditScore(double annualIncome, int creditScore) {
-        User user = userRepository.findByAnnualIncomeAndCreditScore(annualIncome, creditScore);
-        if (annualIncome >= 30000 && creditScore >= 700) {
-            System.out.println("Congratulations! You are eligible for a high limit credit card!");
-            return true;
-        } else if (annualIncome >= 20000 && creditScore >= 600) {
-            System.out.println("You are eligible for a moderate limit credit card!");
-            return true;
-        } else {
-            System.out.println("Your credit score is not eligible for any credit card.");
-            return false;
-        }
+    public void updateLoginId(Long userId, String loginId) {
+        userRepository.updateLoginId(userId, loginId);
     }
 
-    public boolean autoApprovePayment(double paymentAmount) {
-        User user = userRepository.findByPaymentAmount(paymentAmount);
-        if (paymentAmount <= 1000.0) {
-            System.out.println("Payment approved!");
-            return true;
-        } else {
-            System.out.println("Payment not approved.");
-            return false;
-        }
+    public void updateTitle(Long userId, String title) {
+        userRepository.updateTitle(userId, title);
     }
 
-    public void disbursement(String vendorName, boolean fundsAvailable, boolean paymentApproval) {
-        User user = userRepository.findByVendorNameFundsAvailableAndPaymentApproval(vendorName, fundsAvailable, paymentApproval);
-        if (user != null) {
-            System.out.println("Disbursement process successful. Vendor Name: " + vendorName + " Payment Amount: " + user.getPaymentAmount());
-        } else {
-            System.out.println("Vendor information is invalid.");
-        }
+    public void updateFirstName(Long userId, String firstName) {
+        userRepository.updateFirstName(userId, firstName);
     }
 
-    public void closeApp() {
-        System.out.println("Closing the application...");
+    public void updateLastName(Long userId, String lastName) {
+        userRepository.updateLastName(userId, lastName);
+    }
+
+    public void updateEmail(Long userId, String email) {
+        userRepository.updateEmail(userId, email);
+    }
+
+    public void updatePhoneNumber(Long userId, String phoneNumber) {
+        userRepository.updatePhoneNumber(userId, phoneNumber);
+    }
+
+    public void updateMobileNumber(Long userId, String mobileNumber) {
+        userRepository.updateMobileNumber(userId, mobileNumber);
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    public void changePassword(Long userId, String newPassword) {
+        userRepository.changePassword(userId, newPassword);
     }
 }

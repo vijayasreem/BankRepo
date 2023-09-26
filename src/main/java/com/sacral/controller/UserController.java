@@ -1,45 +1,77 @@
 package com.sacral.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.sacral.model.User;
 import com.sacral.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
-
-    @GetMapping("/greetUser")
-    public void greetUser() {
-        userService.greetUser();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/verifyIdentityAndAddress")
-    public boolean verifyIdentityAndAddress(@RequestParam String identity, @RequestParam String address) {
-        return userService.verifyIdentityAndAddress(identity, address);
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllFunctionalities();
     }
 
-    @GetMapping("/evaluateCreditScore")
-    public boolean evaluateCreditScore(@RequestParam double annualIncome, @RequestParam int creditScore) {
-        return userService.evaluateCreditScore(annualIncome, creditScore);
+    @PutMapping("/{userId}/loginId")
+    public void updateLoginId(@PathVariable Long userId, @RequestBody String loginId) {
+        userService.updateLoginId(userId, loginId);
     }
 
-    @GetMapping("/autoApprovePayment")
-    public boolean autoApprovePayment(@RequestParam double paymentAmount) {
-        return userService.autoApprovePayment(paymentAmount);
+    @PutMapping("/{userId}/title")
+    public void updateTitle(@PathVariable Long userId, @RequestBody String title) {
+        userService.updateTitle(userId, title);
     }
 
-    @GetMapping("/disbursement")
-    public void disbursement(@RequestParam String vendorName, @RequestParam boolean fundsAvailable, @RequestParam boolean paymentApproval) {
-        userService.disbursement(vendorName, fundsAvailable, paymentApproval);
+    @PutMapping("/{userId}/firstName")
+    public void updateFirstName(@PathVariable Long userId, @RequestBody String firstName) {
+        userService.updateFirstName(userId, firstName);
     }
 
-    @GetMapping("/closeApp")
-    public void closeApp() {
-        userService.closeApp();
+    @PutMapping("/{userId}/lastName")
+    public void updateLastName(@PathVariable Long userId, @RequestBody String lastName) {
+        userService.updateLastName(userId, lastName);
+    }
+
+    @PutMapping("/{userId}/email")
+    public void updateEmail(@PathVariable Long userId, @RequestBody String email) {
+        userService.updateEmail(userId, email);
+    }
+
+    @PutMapping("/{userId}/phoneNumber")
+    public void updatePhoneNumber(@PathVariable Long userId, @RequestBody String phoneNumber) {
+        userService.updatePhoneNumber(userId, phoneNumber);
+    }
+
+    @PutMapping("/{userId}/mobileNumber")
+    public void updateMobileNumber(@PathVariable Long userId, @RequestBody String mobileNumber) {
+        userService.updateMobileNumber(userId, mobileNumber);
+    }
+
+    @PostMapping
+    public User saveUser(@RequestBody User user) {
+        return userService.save(user);
+    }
+
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        User user = new User();
+        user.setId(userId);
+        userService.delete(user);
+    }
+
+    @PutMapping("/{userId}/changePassword")
+    public void changePassword(@PathVariable Long userId, @RequestBody String newPassword) {
+        userService.changePassword(userId, newPassword);
     }
 }

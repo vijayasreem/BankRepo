@@ -1,25 +1,53 @@
+
 package com.sacral.repository;
 
+import com.sacral.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import com.sacral.model.User;
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE u.name = :name")
-    User findByName(@Param("name") String name);
+    // Query to get all functionalities related to user profile
+    @Query("SELECT u FROM User u")
+    List<User> getAllFunctionalities();
 
-    @Query("SELECT u FROM User u WHERE u.identity = :identity and u.address = :address")
-    User findByIdentityAndAddress(@Param("identity") String identity, @Param("address") String address);
+    // Query to update Login ID
+    @Query("UPDATE User SET loginId = ?2 WHERE id = ?1")
+    void updateLoginId(Long userId, String loginId);
 
-    @Query("SELECT u FROM User u WHERE u.annualIncome >= :annualIncome and u.creditScore >= :creditScore")
-    User findByAnnualIncomeAndCreditScore(@Param("annualIncome") double annualIncome, @Param("creditScore") int creditScore);
+    // Query to update Title
+    @Query("UPDATE User SET title = ?2 WHERE id = ?1")
+    void updateTitle(Long userId, String title);
 
-    @Query("SELECT u FROM User u WHERE u.paymentAmount <= :paymentAmount")
-    User findByPaymentAmount(@Param("paymentAmount") double paymentAmount);
+    // Query to update First Name
+    @Query("UPDATE User SET firstName = ?2 WHERE id = ?1")
+    void updateFirstName(Long userId, String firstName);
 
-    @Query("SELECT u FROM User u WHERE u.vendorName = :vendorName AND u.fundsAvailable = :fundsAvailable AND u.paymentApproval = :paymentApproval")
-    User findByVendorNameFundsAvailableAndPaymentApproval(@Param("vendorName") String vendorName, @Param("fundsAvailable") boolean fundsAvailable, @Param("paymentApproval") boolean paymentApproval);
+    // Query to update Last Name
+    @Query("UPDATE User SET lastName = ?2 WHERE id = ?1")
+    void updateLastName(Long userId, String lastName);
+
+    // Query to update Email
+    @Query("UPDATE User SET email = ?2 WHERE id = ?1")
+    void updateEmail(Long userId, String email);
+
+    // Query to update Phone Number
+    @Query("UPDATE User SET phoneNumber = ?2 WHERE id = ?1")
+    void updatePhoneNumber(Long userId, String phoneNumber);
+
+    // Query to update Mobile Number
+    @Query("UPDATE User SET mobileNumber = ?2 WHERE id = ?1")
+    void updateMobileNumber(Long userId, String mobileNumber);
+
+    // Query to save user details
+    User save(User user);
+
+    // Query to delete user details
+    void delete(User user);
+
+    // Query to change password
+    @Query("UPDATE User SET password = ?2 WHERE id = ?1")
+    void changePassword(Long userId, String newPassword);
 }
