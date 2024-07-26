@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trigger>
+  <userStory>
+    <as>A customer</as>
+    <want>To apply for a car mortgage loan through the bank's website</want>
+    <so>That I can conveniently submit my application online</so>
+  </userStory>
+  <acceptanceCriteria>
+    <criteria>User Interface: The bank's website must have a dedicated section for car mortgage loan applications. The application form must be accessible from the homepage or the loans section of the website.</criteria>
+    <criteria>Form Fields: The application form must include fields for personal information (name, address, contact details). The form must include fields for financial information (income, employment details). The form must include fields for loan details (desired loan amount, loan term). The form must include fields for vehicle details (make, model, year, VIN).</criteria>
+    <criteria>Document Upload: The form must allow customers to upload identification documents (e.g., driver's license, passport). The form must allow customers to upload proof of income documents (e.g., pay stubs, bank statements). The form must allow customers to upload credit history documents. The form must allow customers to upload employment verification documents.</criteria>
+    <criteria>Validation: The form must validate all required fields before submission. The form must provide error messages for any missing or incorrectly formatted information.</criteria>
+    <criteria>Submission: Upon successful submission, the customer must receive a confirmation message on the website. The customer must receive an email confirmation of their loan application submission.</criteria>
+    <criteria>Security: The form must use HTTPS to ensure secure data transmission. Uploaded documents must be stored securely in compliance with data protection regulations.</criteria>
+  </acceptanceCriteria>
+  <definitionOfDone>
+    <done>The car mortgage loan application form is accessible from the bank's website.</done>
+    <done>The form includes all required fields for personal, financial, loan, and vehicle information.</done>
+    <done>The form allows customers to upload necessary documents for identification, income proof, credit history, and employment verification.</done>
+    <done>The form validates all required fields and provides appropriate error messages for any issues.</done>
+    <done>Customers receive a confirmation message on the website and an email upon successful submission of the application.</done>
+    <done>The form and document uploads are secured using HTTPS and comply with data protection regulations.</done>
+    <done>The feature has been tested for usability, functionality, and security.</done>
+    <done>The feature has been reviewed and approved by relevant stakeholders.</done>
+  </definitionOfDone>
+</trigger>

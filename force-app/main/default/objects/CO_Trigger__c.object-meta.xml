@@ -1,0 +1,106 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>CarMortgageLoan__c</name>
+    <label>Car Mortgage Loan</label>
+    <pluralLabel>Car Mortgage Loans</pluralLabel>
+    <nameField>
+        <label>Loan Name</label>
+        <type>Text</type>
+    </nameField>
+    <fields>
+        <fullName>Name</fullName>
+        <label>Name</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Address__c</fullName>
+        <label>Address</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Details__c</fullName>
+        <label>Contact Details</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Income__c</fullName>
+        <label>Income</label>
+        <required>true</required>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Employment_Details__c</fullName>
+        <label>Employment Details</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Loan_Amount__c</fullName>
+        <label>Loan Amount</label>
+        <required>true</required>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Loan_Term__c</fullName>
+        <label>Loan Term</label>
+        <required>true</required>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Make__c</fullName>
+        <label>Vehicle Make</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Model__c</fullName>
+        <label>Vehicle Model</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Year__c</fullName>
+        <label>Vehicle Year</label>
+        <required>true</required>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Vehicle_VIN__c</fullName>
+        <label>Vehicle VIN</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Identification_Document__c</fullName>
+        <label>Identification Document</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Income_Proof_Document__c</fullName>
+        <label>Income Proof Document</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Credit_History_Document__c</fullName>
+        <label>Credit History Document</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Employment_Verification_Document__c</fullName>
+        <label>Employment Verification Document</label>
+        <required>true</required>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Confirmation_Message__c</fullName>
+        <label>Confirmation Message</label>
+        <type>Text</type>
+    </fields>
+</CustomObject>
