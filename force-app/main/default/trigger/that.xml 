@@ -1,0 +1,30 @@
+<userStory>
+  <as>A customer</as>
+  <want>To apply for a car mortgage loan via the bank's mobile app</want>
+  <soThat>I can submit my application using my smartphone</soThat>
+  <acceptanceCriteria>
+    <criteria>The mobile app must have a dedicated section for car mortgage loan applications.</criteria>
+    <criteria>The application form must be accessible via the mobile app and should be user-friendly and intuitive.</criteria>
+    <criteria>The application form must include fields for personal information, contact details, employment details, and loan requirements.</criteria>
+    <criteria>The mobile app must allow customers to upload necessary documents, such as identification, proof of income, credit history, and employment details.</criteria>
+    <criteria>The mobile app must provide clear instructions and prompts to guide customers through the application process.</criteria>
+    <criteria>The mobile app must validate the entered information and uploaded documents for completeness and accuracy before submission.</criteria>
+    <criteria>The mobile app must provide a confirmation message upon successful submission of the loan application.</criteria>
+    <criteria>The mobile app must ensure the security and confidentiality of the customer's information during the application process.</criteria>
+    <criteria>The mobile app must be compatible with both iOS and Android devices.</criteria>
+  </acceptanceCriteria>
+  <definitionOfDone>
+    <done>The mobile app has a dedicated section for car mortgage loan applications.</done>
+    <done>The application form is accessible, user-friendly, and intuitive on the mobile app.</done>
+    <done>The application form includes fields for personal information, contact details, employment details, and loan requirements.</done>
+    <done>Customers can upload necessary documents, such as identification, proof of income, credit history, and employment details, via the mobile app.</done>
+    <done>Clear instructions and prompts are provided to guide customers through the application process.</done>
+    <done>The mobile app validates the entered information and uploaded documents for completeness and accuracy before submission.</done>
+    <done>A confirmation message is displayed upon successful submission of the loan application.</done>
+    <done>The security and confidentiality of the customer's information are ensured during the application process.</done>
+    <done>The mobile app is compatible with both iOS and Android devices.</done>
+    <done>The functionality has been tested and verified on both iOS and Android devices.</done>
+    <done>User acceptance testing (UAT) has been completed and feedback has been addressed.</done>
+    <done>The feature is documented in the user manual and release notes.</done>
+  </definitionOfDone>
+</userStory>
